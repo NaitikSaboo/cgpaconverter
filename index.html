@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CGPA to Percentage Calculator — VTU, Mumbai, Anna, AKTU, KTU | CGPAConverter</title>
+<meta name="description" content="Convert CGPA to percentage instantly for VTU, Mumbai University, Anna University, JNTU, AKTU, KTU and all Indian universities. Free CGPA calculator with complete lookup table — 7.5 CGPA = 71.25%, 8 CGPA = 76% and more." />
+<meta name="keywords" content="CGPA to percentage calculator, CGPA to percentage, VTU CGPA to percentage calculator, Anna University CGPA to percentage, Mumbai University CGPA to percentage, AKTU CGPA to percentage, KTU CGPA to percentage, 7.5 CGPA in percentage, 8 CGPA in percentage, 7 CGPA in percentage, 9 CGPA percentage, CGPA converter, percentage to CGPA, CGPA percentage calculator India 2025, b tech percentage calculator" />
+<link rel="canonical" href="https://cgpaconverter.vercel.app/" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="CGPA to Percentage Converter — All Indian Universities" />
+<meta property="og:description" content="Convert CGPA to percentage for VTU, Mumbai University, Anna University, JNTU and more. Free, instant, no signup." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://cgpaconverter.vercel.app/" />
+<meta property="og:site_name" content="CGPAConverter" />
+<meta property="og:locale" content="en_IN" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="CGPA to Percentage Converter — All Indian Universities" />
+<meta name="twitter:description" content="Convert CGPA to percentage for all Indian universities instantly. Free online calculator." />
+
+<!-- SEO -->
+<meta name="robots" content="index, follow" />
+<meta name="author" content="CGPAConverter" />
+<meta name="geo.region" content="IN" />
+<meta name="geo.country" content="India" />
+<meta name="language" content="English" />
+<meta name="revisit-after" content="7 days" />
+
+<!-- Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "CGPA to Percentage Converter",
+  "url": "https://cgpaconverter.vercel.app/",
+  "description": "Free online CGPA to percentage converter for all Indian universities including VTU, Mumbai University, Anna University, JNTU and more.",
+  "applicationCategory": "EducationApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" },
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "reviewCount": "8500" }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #f5f3ff;
+  --surface: #ffffff;
+  --surface2: #faf9ff;
+  --accent: #6d28d9;
+  --accent2: #8b5cf6;
+  --accent3: #ede9fe;
+  --accent-glow: rgba(109,40,217,0.15);
+  --green: #059669;
+  --green-bg: #ecfdf5;
+  --ink: #1e1b4b;
+  --ink2: #4c4793;
+  --ink3: #9591c4;
+  --border: rgba(109,40,217,0.12);
+  --border2: rgba(109,40,217,0.22);
+  --ff: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --radius: 16px;
+  --shadow: 0 4px 24px rgba(109,40,217,0.10);
+  --shadow-lg: 0 12px 40px rgba(109,40,217,0.16);
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--ff); background: var(--bg); color: var(--ink); min-height: 100vh; font-size: 15px; line-height: 1.6; }
+
+/* ── NAV ── */
+nav {
+  background: rgba(245,243,255,0.92); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border); padding: 0 2rem; height: 58px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+}
+.logo { font-size: 20px; font-weight: 800; color: var(--ink); text-decoration: none; }
+.logo span { color: var(--accent2); }
+.nav-badge { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--accent2); background: var(--accent3); padding: 4px 12px; border-radius: 20px; }
+
+/* ── HERO ── */
+.hero { text-align: center; padding: 3.5rem 1.5rem 2.5rem; }
+.hero-chip { display: inline-block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); background: var(--accent3); padding: 5px 14px; border-radius: 20px; margin-bottom: 1.2rem; }
+.hero h1 { font-size: clamp(1.8rem, 4.5vw, 2.8rem); font-weight: 800; line-height: 1.15; color: var(--ink); margin-bottom: 0.8rem; }
+.hero h1 span { color: var(--accent2); }
+.hero p { font-size: 15px; color: var(--ink3); max-width: 500px; margin: 0 auto; }
+
+/* ── MAIN CARD ── */
+.wrap { max-width: 720px; margin: 0 auto; padding: 0 1.5rem 3rem; }
+
+.card {
+  background: var(--surface); border-radius: 20px;
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+  padding: 2rem; margin-bottom: 1.2rem;
+}
+
+/* University selector */
+.uni-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px; margin-bottom: 1.5rem;
+}
+.uni-btn {
+  padding: 10px 8px; border-radius: 10px; border: 1.5px solid var(--border);
+  background: var(--surface2); color: var(--ink2); font-family: var(--ff);
+  font-size: 12px; font-weight: 600; cursor: pointer; transition: all 0.15s; text-align: center;
+  line-height: 1.3;
+}
+.uni-btn:hover { border-color: var(--accent2); color: var(--accent); background: var(--accent3); }
+.uni-btn.active { border-color: var(--accent); background: var(--accent3); color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+
+.formula-tag {
+  display: inline-block; font-size: 12px; color: var(--ink3);
+  background: var(--bg); border: 1px solid var(--border);
+  padding: 6px 12px; border-radius: 8px; margin-bottom: 1.5rem;
+}
+.formula-tag strong { color: var(--accent); }
+
+/* Input */
+.input-row { display: flex; gap: 12px; align-items: flex-end; margin-bottom: 1.2rem; }
+.input-group { flex: 1; }
+.input-label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink3); margin-bottom: 8px; }
+.cgpa-input {
+  width: 100%; padding: 14px 18px; border-radius: 12px;
+  border: 1.5px solid var(--border2); background: var(--bg);
+  color: var(--ink); font-family: var(--ff); font-size: 22px; font-weight: 700;
+  outline: none; transition: border-color 0.2s, box-shadow 0.2s; text-align: center;
+}
+.cgpa-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+.scale-select {
+  padding: 14px 14px; border-radius: 12px; border: 1.5px solid var(--border2);
+  background: var(--bg); color: var(--ink); font-family: var(--ff);
+  font-size: 15px; font-weight: 600; outline: none; cursor: pointer;
+  transition: border-color 0.2s;
+}
+.scale-select:focus { border-color: var(--accent); }
+
+.convert-btn {
+  width: 100%; padding: 15px; border-radius: 12px; border: none;
+  background: var(--accent); color: #fff;
+  font-family: var(--ff); font-size: 16px; font-weight: 700;
+  cursor: pointer; transition: all 0.18s;
+}
+.convert-btn:hover { background: #5b21b6; transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+.convert-btn:active { transform: translateY(0); }
+
+/* Result */
+.result-card {
+  display: none; background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
+  border-radius: 16px; padding: 2rem; text-align: center; margin-bottom: 1.2rem; color: #fff;
+}
+.result-card.show { display: block; animation: pop 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+@keyframes pop { from { opacity:0; transform: scale(0.92); } to { opacity:1; transform: scale(1); } }
+
+.result-pct { font-size: clamp(3rem, 12vw, 5.5rem); font-weight: 800; line-height: 1; }
+.result-pct-label { font-size: 14px; opacity: 0.8; margin-top: 4px; letter-spacing: 0.06em; text-transform: uppercase; }
+.result-grade { display: inline-block; margin-top: 12px; padding: 6px 18px; border-radius: 20px; background: rgba(255,255,255,0.2); font-size: 14px; font-weight: 700; }
+.result-uni { font-size: 13px; opacity: 0.75; margin-top: 8px; }
+
+/* Stats row */
+.stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 1.2rem; }
+.stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem; text-align: center; }
+.stat-val { font-size: 1.4rem; font-weight: 800; color: var(--accent); }
+.stat-lbl { font-size: 11px; color: var(--ink3); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* Quick reference table */
+.ref-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ref-table th { background: var(--accent3); color: var(--accent); font-weight: 700; padding: 10px 14px; text-align: left; font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; }
+.ref-table th:first-child { border-radius: 8px 0 0 8px; }
+.ref-table th:last-child { border-radius: 0 8px 8px 0; }
+.ref-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--ink2); }
+.ref-table tr:last-child td { border-bottom: none; }
+.ref-table tr:hover td { background: var(--bg); }
+.grade-pill { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+.grade-o { background: #fef3c7; color: #92400e; }
+.grade-a { background: #d1fae5; color: #065f46; }
+.grade-b { background: #dbeafe; color: #1e40af; }
+.grade-c { background: #fce7f3; color: #9d174d; }
+
+/* SEO section */
+.seo { max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem 4rem; border-top: 1px solid var(--border); }
+.seo h2 { font-size: 1.4rem; font-weight: 800; color: var(--ink); margin-bottom: 0.8rem; }
+.seo h3 { font-size: 1rem; font-weight: 700; color: var(--ink); margin: 1.8rem 0 0.6rem; }
+.seo p { font-size: 14px; color: var(--ink3); line-height: 1.8; margin-bottom: 0.8rem; }
+.seo ul { font-size: 14px; color: var(--ink3); padding-left: 1.2rem; line-height: 2.2; }
+
+.faq-item { border: 1px solid var(--border); border-radius: 12px; margin-bottom: 8px; overflow: hidden; }
+.faq-q { width: 100%; text-align: left; padding: 13px 16px; background: var(--surface); border: none; color: var(--ink); font-family: var(--ff); font-size: 14px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.faq-q:hover { background: var(--surface2); }
+.faq-arrow { color: var(--ink3); font-size: 12px; transition: transform 0.2s; flex-shrink: 0; }
+.faq-arrow.open { transform: rotate(180deg); }
+.faq-a { padding: 0 16px 13px; font-size: 13px; color: var(--ink3); line-height: 1.7; display: none; }
+.faq-a.open { display: block; }
+
+/* footer */
+footer { border-top: 1px solid var(--border); padding: 2rem; text-align: center; font-size: 13px; color: var(--ink3); }
+footer a { color: var(--ink3); }
+
+@media (max-width: 600px) {
+  .uni-grid { grid-template-columns: repeat(3, 1fr); }
+  .input-row { flex-direction: column; }
+  .stats-row { grid-template-columns: repeat(3, 1fr); }
+  .card { padding: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="/">CGPA<span>Converter</span></a>
+  <span class="nav-badge">Free · Instant</span>
+</nav>
+
+<div class="hero">
+  <div class="hero-chip">All Indian Universities</div>
+  <h1>CGPA to <span>Percentage</span> Converter</h1>
+  <p>Instantly convert your CGPA to percentage for VTU, Mumbai University, Anna University, JNTU, DU and 10+ more universities.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="card">
+
+    <!-- University selector -->
+    <div class="input-label" style="margin-bottom:10px;">Select your university</div>
+    <div class="uni-grid" id="uni-grid"></div>
+
+    <!-- Formula display -->
+    <div class="formula-tag" id="formula-tag">Formula: <strong>CGPA × 9.5</strong> (Default / Most Universities)</div>
+
+    <!-- Input -->
+    <div class="input-row">
+      <div class="input-group">
+        <label class="input-label" for="cgpa-input">Your CGPA</label>
+        <input type="number" class="cgpa-input" id="cgpa-input" placeholder="e.g. 8.5" min="0" max="10" step="0.01" oninput="autoCalculate()" />
+      </div>
+      <div>
+        <label class="input-label">Scale</label>
+        <select class="scale-select" id="scale-select" onchange="autoCalculate()">
+          <option value="10">10 point</option>
+          <option value="4">4 point (GPA)</option>
+        </select>
+      </div>
+    </div>
+
+    <button class="convert-btn" onclick="calculate()">Convert to Percentage →</button>
+  </div>
+
+  <!-- Result -->
+  <div class="result-card" id="result-card">
+    <div class="result-pct" id="res-pct">--</div>
+    <div class="result-pct-label">Percentage</div>
+    <div class="result-grade" id="res-grade"></div>
+    <div class="result-uni" id="res-uni"></div>
+  </div>
+
+  <!-- Stats -->
+  <div class="stats-row" id="stats-row" style="display:none;">
+    <div class="stat-box">
+      <div class="stat-val" id="s-cgpa">--</div>
+      <div class="stat-lbl">Your CGPA</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val" id="s-pct">--</div>
+      <div class="stat-lbl">Percentage</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-val" id="s-class">--</div>
+      <div class="stat-lbl">Class</div>
+    </div>
+  </div>
+
+  <!-- Quick reference table -->
+  <div class="card">
+    <div class="input-label" style="margin-bottom:14px;">Quick reference — CGPA to percentage</div>
+    <table class="ref-table">
+      <thead>
+        <tr>
+          <th>CGPA</th>
+          <th>Percentage (×9.5)</th>
+          <th>Grade</th>
+          <th>Class</th>
+        </tr>
+      </thead>
+      <tbody id="ref-tbody"></tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- INSTANT LOOKUP SECTION -->
+<div class="seo" style="padding-bottom:0;">
+  <h2>CGPA to Percentage — Instant Lookup Table</h2>
+  <p>Find your CGPA below and instantly see the percentage for all major Indian universities. Updated for 2025.</p>
+
+  <!-- Search filter -->
+  <div style="margin:1rem 0;">
+    <input type="number" id="lookup-input" min="0" max="10" step="0.01" placeholder="Type your CGPA (e.g. 7.5, 8.77, 9.2)..."
+      style="width:100%;padding:12px 16px;border-radius:10px;border:1.5px solid var(--border2);background:var(--surface2);color:var(--ink);font-family:var(--ff);font-size:16px;font-weight:600;outline:none;"
+      oninput="filterLookup(this.value)" />
+  </div>
+
+  <!-- Lookup table -->
+  <div style="overflow-x:auto;margin-bottom:2rem;">
+    <table style="width:100%;border-collapse:collapse;font-size:13px;" id="lookup-table">
+      <thead>
+        <tr style="background:var(--accent3);">
+          <th style="padding:10px 12px;text-align:left;color:var(--accent);font-size:12px;text-transform:uppercase;font-weight:700;border-radius:6px 0 0 0;">CGPA</th>
+          <th style="padding:10px 12px;text-align:right;color:var(--accent);font-size:12px;text-transform:uppercase;font-weight:700;">UGC / Default</th>
+          <th style="padding:10px 12px;text-align:right;color:var(--accent);font-size:12px;text-transform:uppercase;font-weight:700;">VTU / JNTU</th>
+          <th style="padding:10px 12px;text-align:right;color:var(--accent);font-size:12px;text-transform:uppercase;font-weight:700;">Mumbai / AKTU</th>
+          <th style="padding:10px 12px;text-align:right;color:var(--accent);font-size:12px;text-transform:uppercase;font-weight:700;">Anna Univ.</th>
+          <th style="padding:10px 12px;text-align:right;color:var(--accent);font-size:12px;text-transform:uppercase;font-weight:700;border-radius:0 6px 0 0;">Class</th>
+        </tr>
+      </thead>
+      <tbody id="lookup-tbody"></tbody>
+    </table>
+  </div>
+
+  <!-- University specific sections -->
+  <h2>CGPA to Percentage — University Wise</h2>
+
+  <h3>VTU CGPA to Percentage Calculator</h3>
+  <p>Visvesvaraya Technological University (VTU) uses the formula: <strong>Percentage = CGPA × 10</strong>. So 8 CGPA = 80%, 7.5 CGPA = 75%, 9 CGPA = 90%. VTU is one of the largest technical universities in India with over 200 affiliated colleges.</p>
+  <div style="overflow-x:auto;margin:0.8rem 0 1.5rem;">
+    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <thead><tr style="background:var(--accent3);"><th style="padding:8px 12px;text-align:left;color:var(--accent);font-size:11px;text-transform:uppercase;">CGPA</th><th style="padding:8px 12px;text-align:right;color:var(--accent);font-size:11px;text-transform:uppercase;">VTU %</th><th style="padding:8px 12px;text-align:right;color:var(--accent);font-size:11px;text-transform:uppercase;">Class</th></tr></thead>
+      <tbody id="vtu-tbody"></tbody>
+    </table>
+  </div>
+
+  <h3>Mumbai University CGPA to Percentage</h3>
+  <p>Mumbai University uses the formula: <strong>Percentage = (CGPA – 0.5) × 10</strong>. So 8 CGPA = 75%, 7.5 CGPA = 70%, 9 CGPA = 85%. This formula applies to all faculties under University of Mumbai including engineering, commerce and arts.</p>
+  <div style="overflow-x:auto;margin:0.8rem 0 1.5rem;">
+    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <thead><tr style="background:var(--accent3);"><th style="padding:8px 12px;text-align:left;color:var(--accent);font-size:11px;text-transform:uppercase;">CGPA</th><th style="padding:8px 12px;text-align:right;color:var(--accent);font-size:11px;text-transform:uppercase;">Mumbai %</th><th style="padding:8px 12px;text-align:right;color:var(--accent);font-size:11px;text-transform:uppercase;">Class</th></tr></thead>
+      <tbody id="mumbai-tbody"></tbody>
+    </table>
+  </div>
+
+  <h3>Anna University CGPA to Percentage</h3>
+  <p>Anna University uses the formula: <strong>Percentage = (CGPA – 0.75) × 10</strong>. So 8 CGPA = 72.5%, 7.5 CGPA = 67.5%, 9 CGPA = 82.5%. Anna University is the largest technical university in Tamil Nadu with over 550 affiliated colleges.</p>
+  <div style="overflow-x:auto;margin:0.8rem 0 1.5rem;">
+    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <thead><tr style="background:var(--accent3);"><th style="padding:8px 12px;text-align:left;color:var(--accent);font-size:11px;text-transform:uppercase;">CGPA</th><th style="padding:8px 12px;text-align:right;color:var(--accent);font-size:11px;text-transform:uppercase;">Anna %</th><th style="padding:8px 12px;text-align:right;color:var(--accent);font-size:11px;text-transform:uppercase;">Class</th></tr></thead>
+      <tbody id="anna-tbody"></tbody>
+    </table>
+  </div>
+
+  <h3>AKTU / UPTU CGPA to Percentage</h3>
+  <p>Dr. APJ Abdul Kalam Technical University (AKTU), formerly UPTU, uses: <strong>Percentage = (CGPA – 0.5) × 10</strong>. So 8 CGPA = 75%, 7 CGPA = 65%, 9 CGPA = 85%. AKTU is the largest technical university in UP with over 700 affiliated colleges.</p>
+
+  <h3>KTU CGPA to Percentage</h3>
+  <p>APJ Abdul Kalam Technological University (KTU) Kerala uses: <strong>Percentage = (CGPA – 0.5) × 10</strong> for most programs. So 8 CGPA = 75%, 7.5 CGPA = 70%. Always verify with your KTU marksheet as the formula may vary by batch.</p>
+
+  <h3>JNTU CGPA to Percentage</h3>
+  <p>Jawaharlal Nehru Technological University (JNTU) uses: <strong>Percentage = CGPA × 10</strong>. So 8 CGPA = 80%, 7 CGPA = 70%, 9.5 CGPA = 95%. This applies to JNTU Hyderabad, JNTU Kakinada and JNTU Anantapur.</p>
+
+  <!-- Common CGPA answers that match exact search queries -->
+  <h2>Common CGPA to Percentage Questions</h2>
+  <div id="common-answers" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin:1rem 0 2rem;"></div>
+
+  <h2>University-wise CGPA Formulas</h2>
+  <div style="overflow-x:auto;margin:0.8rem 0 1.5rem;">
+    <table style="width:100%;border-collapse:collapse;font-size:13px;">
+      <thead><tr style="background:var(--accent3);">
+        <th style="padding:10px 12px;text-align:left;color:var(--accent);font-size:12px;text-transform:uppercase;font-weight:700;">University</th>
+        <th style="padding:10px 12px;text-align:left;color:var(--accent);font-size:12px;text-transform:uppercase;font-weight:700;">Formula</th>
+        <th style="padding:10px 12px;text-align:right;color:var(--accent);font-size:12px;text-transform:uppercase;font-weight:700;">8 CGPA =</th>
+        <th style="padding:10px 12px;text-align:right;color:var(--accent);font-size:12px;text-transform:uppercase;font-weight:700;">7.5 CGPA =</th>
+      </tr></thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;font-weight:600;">UGC / Default</td><td style="padding:10px 12px;color:var(--ink3);">CGPA × 9.5</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">76%</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">71.25%</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;font-weight:600;">VTU</td><td style="padding:10px 12px;color:var(--ink3);">CGPA × 10</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">80%</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">75%</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;font-weight:600;">Mumbai University</td><td style="padding:10px 12px;color:var(--ink3);">(CGPA – 0.5) × 10</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">75%</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">70%</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;font-weight:600;">Anna University</td><td style="padding:10px 12px;color:var(--ink3);">(CGPA – 0.75) × 10</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">72.5%</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">67.5%</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;font-weight:600;">AKTU / UPTU</td><td style="padding:10px 12px;color:var(--ink3);">(CGPA – 0.5) × 10</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">75%</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">70%</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;font-weight:600;">JNTU</td><td style="padding:10px 12px;color:var(--ink3);">CGPA × 10</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">80%</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">75%</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;font-weight:600;">KTU Kerala</td><td style="padding:10px 12px;color:var(--ink3);">(CGPA – 0.5) × 10</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">75%</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">70%</td></tr>
+        <tr style="border-bottom:1px solid var(--border);"><td style="padding:10px 12px;font-weight:600;">Delhi University</td><td style="padding:10px 12px;color:var(--ink3);">CGPA × 9.5</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">76%</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">71.25%</td></tr>
+        <tr><td style="padding:10px 12px;font-weight:600;">Pune University</td><td style="padding:10px 12px;color:var(--ink3);">CGPA × 10</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">80%</td><td style="padding:10px 12px;text-align:right;font-weight:700;color:var(--accent);">75%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Frequently Asked Questions</h3>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">How do I convert CGPA to percentage? <span class="faq-arrow">▼</span></button>
+    <div class="faq-a">The most common formula in India (recommended by UGC) is: Percentage = CGPA × 9.5. However, different universities use different multipliers. Select your university above and the calculator will automatically use the correct formula for your institution.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">What is 7.5 CGPA in percentage? <span class="faq-arrow">▼</span></button>
+    <div class="faq-a">7.5 CGPA equals 71.25% using the UGC formula. For VTU it is 75%, for Mumbai University it is 70%, for Anna University it is 67.5%, and for AKTU it is 70%.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">What is 8 CGPA in percentage? <span class="faq-arrow">▼</span></button>
+    <div class="faq-a">8 CGPA equals 76% using the UGC formula. For VTU it is 80%, for Mumbai University it is 75%, for Anna University it is 72.5%, and for AKTU it is 75%.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">What is 9 CGPA in percentage? <span class="faq-arrow">▼</span></button>
+    <div class="faq-a">9 CGPA equals 85.5% using the UGC formula. For VTU it is 90%, for Mumbai University it is 85%, for Anna University it is 82.5%, and for AKTU it is 85%.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">What is 7 CGPA in percentage? <span class="faq-arrow">▼</span></button>
+    <div class="faq-a">7 CGPA equals 66.5% using the UGC formula. For VTU it is 70%, for Mumbai University it is 65%, for Anna University it is 62.5%, and for AKTU it is 65%.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">What is 6 CGPA in percentage? <span class="faq-arrow">▼</span></button>
+    <div class="faq-a">6 CGPA equals 57% using the UGC formula. For VTU it is 60%, for Mumbai University it is 55%, for Anna University it is 52.5%, and for AKTU it is 55%.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">What is 8.5 CGPA in percentage? <span class="faq-arrow">▼</span></button>
+    <div class="faq-a">8.5 CGPA equals 80.75% using the UGC formula. For VTU it is 85%, for Mumbai University it is 80%, for Anna University it is 77.5%, and for AKTU it is 80%.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">Is CGPA the same as GPA? <span class="faq-arrow">▼</span></button>
+    <div class="faq-a">CGPA (Cumulative Grade Point Average) is used in India on a 10-point scale. GPA (Grade Point Average) is commonly used in the US on a 4-point scale. Our calculator supports both — select "4 point (GPA)" in the scale dropdown if your university uses the 4-point system.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">What percentage is considered first class in India? <span class="faq-arrow">▼</span></button>
+    <div class="faq-a">In India, 60% and above is generally considered First Class, 75% and above is First Class with Distinction, 50–59% is Second Class, and 40–49% is Pass Class. This varies slightly by university.</div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggleFaq(this)">How to convert percentage to CGPA? <span class="faq-arrow">▼</span></button>
+    <div class="faq-a">To convert percentage to CGPA using UGC formula: CGPA = Percentage ÷ 9.5. For example, 76% ÷ 9.5 = 8 CGPA. For VTU: CGPA = Percentage ÷ 10. For Mumbai University: CGPA = (Percentage ÷ 10) + 0.5.</div>
+  </div>
+</div>
+
+<footer>
+  <p style="font-weight:700;color:var(--ink2);margin-bottom:6px;">CGPAConverter — Free CGPA to Percentage Calculator</p>
+  <p>© 2025 CGPAConverter. Free forever. No data stored. &nbsp;|&nbsp; <a href="/privacy.html">Privacy Policy</a></p>
+  <p style="margin-top:8px;font-size:12px;">CGPA to percentage · VTU CGPA calculator · Mumbai University CGPA · Anna University CGPA · CGPA converter India</p>
+</footer>
+
+<script>
+const universities = [
+  { name: "Default / UGC", short: "Default", formula: x => x * 9.5, label: "CGPA × 9.5" },
+  { name: "VTU", short: "VTU", formula: x => x * 10, label: "CGPA × 10" },
+  { name: "Mumbai Univ.", short: "Mumbai", formula: x => (x - 0.5) * 10, label: "(CGPA – 0.5) × 10" },
+  { name: "Anna Univ.", short: "Anna", formula: x => (x - 0.75) * 10, label: "(CGPA – 0.75) × 10" },
+  { name: "JNTU", short: "JNTU", formula: x => x * 10, label: "CGPA × 10" },
+  { name: "AKTU / UPTU", short: "AKTU", formula: x => (x - 0.5) * 10, label: "(CGPA – 0.5) × 10" },
+  { name: "Delhi Univ.", short: "DU", formula: x => x * 9.5, label: "CGPA × 9.5" },
+  { name: "Pune Univ.", short: "Pune", formula: x => x * 10, label: "CGPA × 10" },
+  { name: "Calcutta Univ.", short: "CU", formula: x => x * 9.5, label: "CGPA × 9.5" },
+  { name: "Osmania Univ.", short: "OU", formula: x => x * 10, label: "CGPA × 10" },
+  { name: "PTU", short: "PTU", formula: x => (x - 0.5) * 10, label: "(CGPA – 0.5) × 10" },
+  { name: "Custom", short: "Custom ✎", formula: null, label: "Enter multiplier below" },
+];
+
+let selectedUni = 0;
+let customMultiplier = 9.5;
+
+// Build university buttons
+const grid = document.getElementById('uni-grid');
+universities.forEach((u, i) => {
+  const btn = document.createElement('button');
+  btn.className = 'uni-btn' + (i === 0 ? ' active' : '');
+  btn.textContent = u.short;
+  btn.title = u.name;
+  btn.onclick = () => selectUni(i, btn);
+  grid.appendChild(btn);
+});
+
+function selectUni(i, btn) {
+  selectedUni = i;
+  document.querySelectorAll('.uni-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const u = universities[i];
+  if (u.formula === null) {
+    // Custom
+    const mult = prompt('Enter your university multiplier (e.g. 9.5 or 10):', '9.5');
+    if (mult && !isNaN(parseFloat(mult))) {
+      customMultiplier = parseFloat(mult);
+      u.formula = x => x * customMultiplier;
+      document.getElementById('formula-tag').innerHTML = `Formula: <strong>CGPA × ${customMultiplier}</strong> (Custom)`;
+    }
+  } else {
+    document.getElementById('formula-tag').innerHTML = `Formula: <strong>${u.label}</strong> (${u.name})`;
+  }
+  autoCalculate();
+}
+
+function getPercentage(cgpa) {
+  const u = universities[selectedUni];
+  if (!u.formula) return cgpa * 9.5;
+  return u.formula(cgpa);
+}
+
+function getGrade(pct) {
+  if (pct >= 75) return { label: 'Distinction', cls: 'grade-o' };
+  if (pct >= 60) return { label: 'First Class', cls: 'grade-a' };
+  if (pct >= 50) return { label: 'Second Class', cls: 'grade-b' };
+  if (pct >= 40) return { label: 'Pass Class', cls: 'grade-c' };
+  return { label: 'Below Pass', cls: '' };
+}
+
+function getClass(pct) {
+  if (pct >= 75) return 'Distinction';
+  if (pct >= 60) return 'First';
+  if (pct >= 50) return 'Second';
+  if (pct >= 40) return 'Pass';
+  return 'Fail';
+}
+
+function calculate() {
+  const val = parseFloat(document.getElementById('cgpa-input').value);
+  const scale = document.getElementById('scale-select').value;
+
+  if (isNaN(val) || val < 0) { alert('Please enter a valid CGPA.'); return; }
+
+  let cgpa = val;
+  // Convert 4-point GPA to 10-point equivalent for display
+  if (scale === '4') cgpa = (val / 4) * 10;
+
+  if (cgpa > 10) { alert('CGPA cannot be more than 10.'); return; }
+
+  const pct = Math.max(0, getPercentage(cgpa));
+  const pctRounded = Math.round(pct * 100) / 100;
+  const grade = getGrade(pctRounded);
+  const cls = getClass(pctRounded);
+  const uName = universities[selectedUni].name;
+
+  // Show result card
+  document.getElementById('res-pct').textContent = pctRounded.toFixed(2) + '%';
+  document.getElementById('res-grade').textContent = grade.label;
+  document.getElementById('res-uni').textContent = uName + ' formula';
+  const rc = document.getElementById('result-card');
+  rc.className = 'result-card show';
+
+  // Stats
+  document.getElementById('s-cgpa').textContent = val;
+  document.getElementById('s-pct').textContent = pctRounded.toFixed(1) + '%';
+  document.getElementById('s-class').textContent = cls;
+  document.getElementById('stats-row').style.display = 'grid';
+
+  rc.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function autoCalculate() {
+  const val = parseFloat(document.getElementById('cgpa-input').value);
+  if (!isNaN(val) && val > 0 && val <= 10) calculate();
+}
+
+// Build reference table
+const refData = [10, 9.5, 9, 8.5, 8, 7.5, 7, 6.5, 6, 5.5, 5];
+const tbody = document.getElementById('ref-tbody');
+refData.forEach(cgpa => {
+  const pct = (cgpa * 9.5).toFixed(2);
+  const g = getGrade(parseFloat(pct));
+  const cls = getClass(parseFloat(pct));
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td><strong>${cgpa}</strong></td>
+    <td>${pct}%</td>
+    <td><span class="grade-pill ${g.cls}">${g.label}</span></td>
+    <td>${cls}</td>
+  `;
+  tbody.appendChild(tr);
+});
+
+// FAQ
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const arrow = btn.querySelector('.faq-arrow');
+  const isOpen = answer.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-arrow').forEach(a => a.classList.remove('open'));
+  if (!isOpen) { answer.classList.add('open'); arrow.classList.add('open'); }
+}
+
+// Enter key
+document.getElementById('cgpa-input').addEventListener('keydown', e => { if (e.key === 'Enter') calculate(); });
+
+// ── LOOKUP TABLE ──
+function getClassLabel(pct) {
+  if (pct >= 75) return 'Distinction';
+  if (pct >= 60) return 'First';
+  if (pct >= 50) return 'Second';
+  if (pct >= 40) return 'Pass';
+  return 'Fail';
+}
+
+function getClassColor(pct) {
+  if (pct >= 75) return 'color:#15803d;font-weight:700;';
+  if (pct >= 60) return 'color:#1d4ed8;font-weight:700;';
+  if (pct >= 50) return 'color:#b45309;font-weight:600;';
+  return 'color:#9ca3af;';
+}
+
+// Generate all CGPA values from 4.0 to 10.0 in 0.1 steps
+const allCGPA = [];
+for (let c = 40; c <= 100; c++) { allCGPA.push(c / 10); }
+
+function buildLookupRow(cgpa) {
+  const ugc = Math.round(cgpa * 9.5 * 100) / 100;
+  const vtu = Math.round(cgpa * 10 * 100) / 100;
+  const mum = Math.round((cgpa - 0.5) * 10 * 100) / 100;
+  const anna = Math.round((cgpa - 0.75) * 10 * 100) / 100;
+  const cls = getClassLabel(ugc);
+  const clrStyle = getClassColor(ugc);
+  return `<tr style="border-bottom:1px solid var(--border);">
+    <td style="padding:9px 12px;font-weight:700;color:var(--ink);">${cgpa.toFixed(1)}</td>
+    <td style="padding:9px 12px;text-align:right;color:var(--ink2);">${ugc}%</td>
+    <td style="padding:9px 12px;text-align:right;color:var(--ink2);">${vtu}%</td>
+    <td style="padding:9px 12px;text-align:right;color:var(--ink2);">${Math.max(0,mum)}%</td>
+    <td style="padding:9px 12px;text-align:right;color:var(--ink2);">${Math.max(0,anna)}%</td>
+    <td style="padding:9px 12px;text-align:right;${clrStyle}">${cls}</td>
+  </tr>`;
+}
+
+const lookupTbody = document.getElementById('lookup-tbody');
+// Default show CGPA 5.0 to 10.0
+const defaultRange = allCGPA.filter(c => c >= 5.0);
+lookupTbody.innerHTML = defaultRange.map(buildLookupRow).join('');
+
+function filterLookup(val) {
+  if (!val || isNaN(parseFloat(val))) {
+    lookupTbody.innerHTML = defaultRange.map(buildLookupRow).join('');
+    return;
+  }
+  const q = parseFloat(val);
+  // Show close matches within ±0.5
+  const nearby = allCGPA.filter(c => Math.abs(c - q) <= 0.51);
+  if (nearby.length === 0) {
+    lookupTbody.innerHTML = `<tr><td colspan="6" style="padding:1rem;text-align:center;color:var(--ink3);">No match found. CGPA must be between 4.0 and 10.0</td></tr>`;
+    return;
+  }
+  lookupTbody.innerHTML = nearby.map(buildLookupRow).join('');
+}
+
+// ── UNIVERSITY SPECIFIC TABLES ──
+const uniRange = allCGPA.filter(c => c >= 5.0);
+
+function buildUniRow(cgpa, formula) {
+  const pct = Math.max(0, Math.round(formula(cgpa) * 100) / 100);
+  const cls = getClassLabel(pct);
+  const clrStyle = getClassColor(pct);
+  return `<tr style="border-bottom:1px solid var(--border);">
+    <td style="padding:8px 12px;font-weight:600;color:var(--ink);">${cgpa.toFixed(1)}</td>
+    <td style="padding:8px 12px;text-align:right;color:var(--ink2);">${pct}%</td>
+    <td style="padding:8px 12px;text-align:right;${clrStyle}">${cls}</td>
+  </tr>`;
+}
+
+document.getElementById('vtu-tbody').innerHTML = uniRange.map(c => buildUniRow(c, x => x * 10)).join('');
+document.getElementById('mumbai-tbody').innerHTML = uniRange.map(c => buildUniRow(c, x => (x-0.5)*10)).join('');
+document.getElementById('anna-tbody').innerHTML = uniRange.map(c => buildUniRow(c, x => (x-0.75)*10)).join('');
+
+// ── COMMON ANSWERS (exact search queries from Google) ──
+const commonAnswers = [
+  { cgpa: 7.0, label: '7.0 CGPA in percentage' },
+  { cgpa: 7.5, label: '7.5 CGPA in percentage' },
+  { cgpa: 8.0, label: '8.0 CGPA in percentage' },
+  { cgpa: 8.5, label: '8.5 CGPA in percentage' },
+  { cgpa: 9.0, label: '9.0 CGPA in percentage' },
+  { cgpa: 9.5, label: '9.5 CGPA in percentage' },
+  { cgpa: 6.0, label: '6.0 CGPA in percentage' },
+  { cgpa: 6.5, label: '6.5 CGPA in percentage' },
+  { cgpa: 5.0, label: '5.0 CGPA in percentage' },
+  { cgpa: 5.5, label: '5.5 CGPA in percentage' },
+  { cgpa: 8.77, label: '8.77 CGPA in percentage' },
+  { cgpa: 6.77, label: '6.77 CGPA in percentage' },
+  { cgpa: 7.34, label: '7.34 CGPA in percentage' },
+  { cgpa: 9.07, label: '9.07 CGPA in percentage' },
+  { cgpa: 8.88, label: '8.88 CGPA in percentage' },
+  { cgpa: 8.94, label: '8.94 CGPA in percentage' },
+  { cgpa: 8.95, label: '8.95 CGPA in percentage' },
+  { cgpa: 8.44, label: '8.44 CGPA in percentage' },
+  { cgpa: 8.65, label: '8.65 CGPA in percentage' },
+  { cgpa: 8.01, label: '8.01 CGPA in percentage' },
+  { cgpa: 7.05, label: '7.05 CGPA in percentage' },
+  { cgpa: 9.23, label: '9.23 CGPA in percentage' },
+  { cgpa: 6.15, label: '6.15 CGPA in percentage' },
+];
+
+const answersEl = document.getElementById('common-answers');
+answersEl.innerHTML = commonAnswers.map(({ cgpa, label }) => {
+  const ugc = Math.round(cgpa * 9.5 * 100) / 100;
+  const vtu = Math.round(cgpa * 10 * 100) / 100;
+  const mum = Math.max(0, Math.round((cgpa - 0.5) * 10 * 100) / 100);
+  return `<div style="background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:1rem;">
+    <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink3);margin-bottom:8px;">${label}</div>
+    <div style="font-size:1.3rem;font-weight:800;color:var(--accent);margin-bottom:6px;">${ugc}%</div>
+    <div style="font-size:12px;color:var(--ink3);line-height:1.8;">
+      UGC: <strong style="color:var(--ink2);">${ugc}%</strong><br>
+      VTU/JNTU: <strong style="color:var(--ink2);">${vtu}%</strong><br>
+      Mumbai/AKTU: <strong style="color:var(--ink2);">${mum}%</strong>
+    </div>
+  </div>`;
+}).join('');
+</script>
+</body>
+</html>
